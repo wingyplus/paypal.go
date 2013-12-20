@@ -4,16 +4,16 @@ type Api struct {
     endpoint string
 }
 
-func NewApi(options map[string]string) *Api{
+func NewApi(configure Configure) *Api{
     var endpoint string
 
-    switch(options["mode"]) {
+    switch(configure.Mode) {
     case "live":
         endpoint = "https://api.paypal.com"
     case "sandbox":
         endpoint = "https://api.sandbox.paypal.com"
     default:
-        endpoint = options["endpoint"]
+        endpoint = configure.Endpoint
     }
 
     return &Api{endpoint: endpoint}
